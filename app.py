@@ -1,12 +1,17 @@
-from flask import Flask, url_for, render_template
+from flask import Flask
+import json
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
+
 app = Flask(__name__)
+app.config.from_file("config.json", load=json.load)
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:@localhost/movie-project?charset=utf8mb4'
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
+db = SQLAlchemy(app)
+migrate = Migrate(app, db)
 
-@app.route("/auth/login")
-def login():
-    return render_template('auth/login.html')
+from auth.views import bp as AuthBlueprint
+app.register_blueprint(AuthBlueprint)
 
-
-@app.route("/auth/register")
-def register():
-    return render_template('auth/register.html')
+from users.user import User

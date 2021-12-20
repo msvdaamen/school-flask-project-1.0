@@ -40,7 +40,7 @@
 }
 
 * {
-	font-family: 'JetBrains Mono';
+    font-family: 'JetBrains Mono';
 }
 
 
@@ -56,17 +56,17 @@
 }
 
 .card {
-	background-color: var(--gray-600) !important;
-	color: #fff;
-	width: 30em;
+    background-color: var(--gray-600) !important;
+    color: #fff;
+    width: 30em;
 }
 
 .btn-primary {
-	background-color: var(--blue-500) !important;
+    background-color: var(--blue-500) !important;
 }
 
 .btn-primary.hover {
-	background-color: var(--blue-400) !important;
+    background-color: var(--blue-400) !important;
 }
 
 .mt-20 {
@@ -74,35 +74,35 @@
 }
 
 .mt-10 {
-	margin-top: 10px;
+    margin-top: 10px;
 }
 
 .btn {
-	height: 3rem !important;
-	padding: 0 24px !important;
-	width: 140px !important;
+    height: 3rem !important;
+    padding: 0 24px !important;
+    width: 140px !important;
 }
 
 hr {
-	background-color: var(--gray-600);
-	border-top-width: 1px;
+    background-color: var(--gray-600);
+    border-top-width: 1px;
 }
 
 .w-full {
-	width: 100% !important;
+    width: 100% !important;
 }
 
 .text-muted {
   color: var(--gray-400) !important;
-	font-size: 0.875rem !important
+    font-size: 0.875rem !important
 }
 
 a {
-	text-decoration: none !important;
+    text-decoration: none !important;
 }
 
 a:hover {
-	text-decoration: underline !important;
+    text-decoration: underline !important;
 }
 
 .rounded-full {
@@ -110,14 +110,14 @@ a:hover {
 }
 
 input {
-	background-color: var(--gray-500) !important;
-	border-color: var(--gray-500) !important;
+    background-color: var(--gray-500) !important;
+    border-color: var(--gray-500) !important;
 }
 
 input[type=text] {
-	color: #fff !important;
+    color: #fff !important;
 }
 
 input::placeholder {
-	color:  var(--gray-500);
+    color:  var(--gray-500);
 }
