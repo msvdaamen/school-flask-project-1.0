@@ -1,0 +1,123 @@
+:root {
+--blue-100: #E0E7FF;
+--blue-200: #C7D2FE;
+--blue-300: #A5B4FC;
+--blue-400: #818CF8;
+--blue-500: #6366F1;
+--blue-600: #4F46E5;
+--blue-700: #4338CA;
+--blue-800: #3730A3;
+--blue-900: #312E81;
+--green-100: #C6F6D5;
+--green-200: #9AE6B4;
+--green-300: #68D391;
+--green-400: #48BB78;
+--green-500: #38A169;
+--green-600: #2F855A;
+--green-700: #276749;
+--green-800: #22543D;
+--green-900: #1C4532;
+--red-100: #FED7D7;
+--red-200: #FEB2B2;
+--red-300: #FC8181;
+--red-400: #F56565;
+--red-500: #E53E3E;
+--red-600: #C53030;
+--red-700: #9B2C2C;
+--red-800: #822727;
+--red-900: #63171B;
+--gray-100: #c8c6ce;
+--gray-200: #b4b2ba;
+--gray-300: #a09ea6;
+--gray-400: #8d8b93;
+--gray-500: #54525a;
+--gray-600: #38363e;
+--gray-700: #24222a;
+--gray-800: #1b1921;
+--gray-900: #15131b;
+
+--bs-text-muted: red;
+}
+
+* {
+	font-family: 'JetBrains Mono';
+}
+
+
+.background {
+  min-height: 100vh;
+  background-color: var(--gray-800);
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+	background-color: var(--gray-600) !important;
+	color: #fff;
+	width: 30em;
+}
+
+.btn-primary {
+	background-color: var(--blue-500) !important;
+}
+
+.btn-primary.hover {
+	background-color: var(--blue-400) !important;
+}
+
+.mt-20 {
+  margin-top: 20px;
+}
+
+.mt-10 {
+	margin-top: 10px;
+}
+
+.btn {
+	height: 3rem !important;
+	padding: 0 24px !important;
+	width: 140px !important;
+}
+
+hr {
+	background-color: var(--gray-600);
+	border-top-width: 1px;
+}
+
+.w-full {
+	width: 100% !important;
+}
+
+.text-muted {
+  color: var(--gray-400) !important;
+	font-size: 0.875rem !important
+}
+
+a {
+	text-decoration: none !important;
+}
+
+a:hover {
+	text-decoration: underline !important;
+}
+
+.rounded-full {
+    border-radius: 1rem !important;
+}
+
+input {
+	background-color: var(--gray-500) !important;
+	border-color: var(--gray-500) !important;
+}
+
+input[type=text] {
+	color: #fff !important;
+}
+
+input::placeholder {
+	color:  var(--gray-500);
+}

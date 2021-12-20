@@ -3,10 +3,10 @@ app = Flask(__name__)
 
 
 @app.route("/auth/login")
-def hello_world():
+def login():
     return render_template('auth/login.html')
 
 
 @app.route("/auth/register")
-def hello_world():
+def register():
     return render_template('auth/register.html')
