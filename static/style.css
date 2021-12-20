@@ -1,6 +1,7 @@
 :root {
 --bs-dark: #38363e;
 --bs-dark-rgb: 56, 54, 62;
+--bs-body-color: #fff;
 --blue-100: #E0E7FF;
 --blue-200: #C7D2FE;
 --blue-300: #A5B4FC;
@@ -37,8 +38,6 @@
 --gray-700: #24222a;
 --gray-800: #1b1921;
 --gray-900: #15131b;
-
---bs-text-muted: red;
 }
 
 * {
@@ -136,7 +135,7 @@ input::placeholder {
 }
 
 .wrapper {
-	background: var(--gray-500) !important;
+	background: var(--gray-800) !important;
 	height: 100vh;
 	display: flex;
 	width: 100%;

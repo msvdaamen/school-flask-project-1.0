@@ -29,11 +29,12 @@
           </a>
         </li>
       </ul>
+      {% if current_user.is_authenticated  %}
       <hr>
       <div class="dropdown">
         <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
           <img src="https://www.kindpng.com/picc/m/26-264366_head-icons-of-bat-computer-tanks-world-batman.png" alt="" width="32" height="32" class="rounded-circle me-2">
-          <strong>Martijn Woddema</strong>
+          <strong>{{current_user.email}}</strong>
         </a>
         <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
           <li><a class="dropdown-item" href="#">New project...</a></li>
@@ -43,6 +44,7 @@
           <li><a class="dropdown-item" href="#">Sign out</a></li>
         </ul>
     </div>
+      {% endif %}
   </div>
   {% block content %}{% endblock %}
 
