@@ -14,3 +14,5 @@ PyMySQL==1.0.2
 SQLAlchemy==1.4.28
 Werkzeug==2.0.2
 WTForms==3.0.0
+
+bcrypt~=3.2.0
