@@ -65,9 +65,13 @@
     background-color: var(--blue-500) !important;
 }
 
-.btn-primary.hover {
+.btn.btn-primary:active,
+.btn.btn-primary:hover,
+.btn.btn-primary:focus {
     background-color: var(--blue-400) !important;
+		box-shadow: 0 0 0 0.25rem rgb(129 140 248 / 25%) !important;
 }
+
 
 .mt-20 {
   margin-top: 20px;
@@ -84,7 +88,7 @@
 }
 
 hr {
-    background-color: var(--gray-600);
+    background-color: var(--gray-400);
     border-top-width: 1px;
 }
 
@@ -114,10 +118,14 @@ input {
     border-color: var(--gray-500) !important;
 }
 
-input[type=text] {
+input {
     color: #fff !important;
 }
 
 input::placeholder {
-    color:  var(--gray-500);
+    color: var(--gray-500);
+}
+
+.form-control:focus {
+	box-shadow: 0 0 0 0.25rem rgb(84 82 90 / 25%) !important;
 }
