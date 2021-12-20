@@ -108,7 +108,7 @@ a {
 }
 
 a:hover {
-    text-decoration: underline !important;
+    text-decoration: underline;
 }
 
 span {
@@ -142,7 +142,3 @@ input::placeholder {
     width: 100%;
     align-items: stretch;
 }}
-
-.text-decoration-none {
-	text-decoration: none !important;
-}
