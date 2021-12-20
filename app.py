@@ -14,6 +14,7 @@ migrate = Migrate(app, db)
 
 from auth.views import bp as AuthBlueprint
 from movies.views import bp as MoviesBlueprint
+
 app.register_blueprint(AuthBlueprint)
 app.register_blueprint(MoviesBlueprint)
 
@@ -22,8 +23,8 @@ login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = "auth.login"
 
+from users.user import User
+
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.filter_by(id=user_id).first()
-
-from users.user import User
