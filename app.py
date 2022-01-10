@@ -24,6 +24,10 @@ login_manager.init_app(app)
 login_manager.login_view = "auth.login"
 
 from users.user import User
+from directors.models.director import Director
+from actors.models.actor import Actor
+from movies.models.movie import Movie
+from movies.models.movieRole import MovieRole
 
 @login_manager.user_loader
 def load_user(user_id):

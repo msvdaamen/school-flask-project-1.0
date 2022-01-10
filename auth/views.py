@@ -4,7 +4,6 @@ from flask_login import login_user, login_required, logout_user
 from app import db
 from auth.forms import RegisterForm, LoginForm
 from users.user import User
-import bcrypt
 
 bp = Blueprint('auth', __name__, url_prefix='/auth', template_folder='templates')
 
