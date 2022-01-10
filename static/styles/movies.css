@@ -9,6 +9,7 @@
 
 .movie-card {
     position: relative;
+    cursor: pointer;
 }
 .movie-card > .movie-info {
     position: absolute;

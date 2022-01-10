@@ -172,3 +172,22 @@ input::placeholder {
 	width: 100%;
 	height: auto;
 }
+.modal-close {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    border-color: transparent;
+    transition: all 200ms;
+    color: #fff !important;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+.modal-close:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+.modal-content {
+    background-color: var(--gray-800) !important;
+    border-color: var(--gray-800) !important;
+}

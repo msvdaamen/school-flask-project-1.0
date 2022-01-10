@@ -2,13 +2,14 @@
 
 {% block head %}
 <link rel="stylesheet" href="{{ url_for('static', filename='styles/movies.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/movie-modal.css') }}">
 {% endblock %}
 {% block content %}
 
-<div class="movies-container">
+<div class="movies-container" id="movies-container">
 
 	{% for movie in movies %}
-    		<div class="movie-card">
+	<div class="movie-card">
 		<img src="{{url_for('static', filename='images/movies/captain-marvel.jpg')}}" class="movie card-img-top" alt="...">
 		<div class="movie-info card-body">
 			<i class="fas fa-play play_button" data-toggle="tooltip" data-placement="bottom" title="Play Trailer"></i>
@@ -21,4 +22,39 @@
 	</div>
 	{% endfor %}
 </div>
+{% endblock %}
+
+{% block body %}
+<div class="modal fade" tabindex="-1" role="dialog" id="movie-modal">
+	<div class="modal-dialog modal-xl" id="movie-modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+<!--				<h5 class="modal-title">Modal title</h5>-->
+				<button type="button" class="modal-close" data-bs-dismiss="modal">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				<div class="banner">
+					<img src="https://www.vvng.com/wp-content/uploads/2019/03/Captain-Marvel.jpg" alt="">
+				</div>
+			</div>
+			<div class="modal-body">
+<!--				<button type="button" class="modal-close" data-dismiss="modal" aria-label="Close">-->
+<!--					<span aria-hidden="true">&times;</span>-->
+<!--				</button>-->
+<!--				<div class="banner">-->
+<!--					<img src="https://www.vvng.com/wp-content/uploads/2019/03/Captain-Marvel.jpg" alt="">-->
+<!--				</div>-->
+				<div class="content">
+					<p>Modal body text goes here.</p>s
+				</div>
+			</div>
+<!--			<div class="modal-footer">-->
+<!--				<button type="button" class="btn btn-primary">Save changes</button>-->
+<!--				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->
+<!--			</div>-->
+		</div>
+	</div>
+</div>
+
+<script src="{{url_for('static', filename='js/movies.js')}}"></script>
 {% endblock %}
