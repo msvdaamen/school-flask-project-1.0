@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/profile.css') }}">
+{% endblock %}
+{% block content %}
+
+<div class="container">
+    <div class="profile bg-dark">
+        <div class="profile-avatar">
+            <img src="https://images.genius.com/2326b69829d58232a2521f09333da1b3.1000x1000x1.jpg" alt="" class="profile-img">
+            <div class="profile-name">{{current_user.email}}</div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -14,9 +14,11 @@ migrate = Migrate(app, db)
 
 from auth.views import bp as AuthBlueprint
 from movies.views import bp as MoviesBlueprint
+from profile.views import bp as ProfileBlueprint
 
 app.register_blueprint(AuthBlueprint)
 app.register_blueprint(MoviesBlueprint)
+app.register_blueprint(ProfileBlueprint)
 
 
 login_manager = LoginManager()
