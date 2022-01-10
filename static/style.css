@@ -42,6 +42,8 @@
 
 * {
     font-family: 'JetBrains Mono';
+    margin: 0;
+    padding: 0;
 }
 
 body {
@@ -50,17 +52,27 @@ body {
     height: 100vh;
 }
 
-.wrapper {
-    display: grid;
-    grid-template-columns: 280px 1fr;
-    height: 100vh;
-    min-width: 0;
-}
-
 .side-bar {
     width: 280px;
-    position: sticky;
+    position: fixed;
     height: 100vh;
+    transform: translateY(-100%);
+}
+
+.main-container {
+    padding: 1rem;
+}
+
+@media(min-width: 768px) {
+    .main-container {
+        margin-left: 280px;
+    }
+    .side-bar {
+        width: 280px;
+        position: fixed;
+        height: 100vh;
+        transform: translateY(0%);
+    }
 }
 
 .background {
