@@ -76,7 +76,7 @@ body {
 }
 
 .background {
-  background-color: var(--gray-800);
+  background-color: vamor(--gray-800);
 }
 
 .flex-center {
