@@ -11,7 +11,9 @@
 </head>
 <body>
 <div class="side-bar p-3 text-white bg-dark">
-    <ul class="nav nav-pills flex-column mb-auto" style="padding-top:50px;">
+  <img class="responsive" src="{{url_for('static', filename='images/icon.png')}}"/>
+  <hr>
+    <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item">
         <a class="nav-link active">
           Trending Movies
@@ -32,7 +34,7 @@
     <hr>
     <div class="dropdown">
       <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-        <img src="https://www.kindpng.com/picc/m/26-264366_head-icons-of-bat-computer-tanks-world-batman.png" alt="" width="32" height="32" class="rounded-circle me-2">
+        <img src="{{url_for('static', filename='images/user_icon.png')}}" width="24" height="24" class="rounded-circle me-2">
         <strong>{{current_user.email}}</strong>
       </a>
       <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">

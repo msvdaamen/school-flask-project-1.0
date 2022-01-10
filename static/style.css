@@ -176,3 +176,8 @@ input::placeholder {
     padding: 1rem;
     min-width: 0;
 }
+
+.responsive {
+	width: 100%;
+	height: auto;
+}
