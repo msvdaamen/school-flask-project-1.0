@@ -3,64 +3,25 @@
 {% block content %}
 
 <div class="movies-container">
-  <div class="movie">
-    <img class="img-fluid" src="https://media.s-bol.com/g1GJQW2zJNr/550x779.jpg">
-  </div>
-    <div class="movie">
-    <img class="img-fluid" src="https://media.s-bol.com/g1GJQW2zJNr/550x779.jpg">
-  </div>
-    <div class="movie">
-    <img class="img-fluid" src="https://media.s-bol.com/g1GJQW2zJNr/550x779.jpg">
-  </div>
-    <div class="movie">
-    <img class="img-fluid" src="https://media.s-bol.com/g1GJQW2zJNr/550x779.jpg">
-  </div>
-    <div class="movie">
-    <img class="img-fluid" src="https://media.s-bol.com/g1GJQW2zJNr/550x779.jpg">
-  </div>
-<!--    <div class="movie">-->
+<!--  <div class="movie">-->
 <!--    <img class="img-fluid" src="https://media.s-bol.com/g1GJQW2zJNr/550x779.jpg">-->
 <!--  </div>-->
-<!--    <div class="movie">-->
-<!--    <img class="img-fluid" src="https://media.s-bol.com/g1GJQW2zJNr/550x779.jpg">-->
-<!--  </div>-->
-<!--    <div class="movie">-->
-<!--    <img class="img-fluid" src="https://media.s-bol.com/g1GJQW2zJNr/550x779.jpg">-->
-<!--  </div>-->
-<!--    <div class="movie">-->
-<!--    <img class="img-fluid" src="https://media.s-bol.com/g1GJQW2zJNr/550x779.jpg">-->
-<!--  </div>-->
-<!--    <div class="movie">-->
-<!--    <img class="img-fluid" src="https://media.s-bol.com/g1GJQW2zJNr/550x779.jpg">-->
-<!--  </div>-->
-<!--    <div class="movie">-->
-<!--    <img class="img-fluid" src="https://media.s-bol.com/g1GJQW2zJNr/550x779.jpg">-->
-<!--  </div>-->
-<!--    <div class="movie">-->
-<!--    <img class="img-fluid" src="https://media.s-bol.com/g1GJQW2zJNr/550x779.jpg">-->
-<!--  </div>-->
-<!--    <div class="movie">-->
-<!--    <img class="img-fluid" src="https://media.s-bol.com/g1GJQW2zJNr/550x779.jpg">-->
-<!--  </div>-->
-<!--    <div class="movie">-->
-<!--    <img class="img-fluid" src="https://media.s-bol.com/g1GJQW2zJNr/550x779.jpg">-->
-<!--  </div>-->
-<!--    <div class="movie">-->
-<!--    <img class="img-fluid" src="https://media.s-bol.com/g1GJQW2zJNr/550x779.jpg">-->
-<!--  </div>-->
-<!--    <div class="movie">-->
-<!--    <img class="img-fluid" src="https://media.s-bol.com/g1GJQW2zJNr/550x779.jpg">-->
-<!--  </div>-->
-<!--    <div class="movie">-->
-<!--    <img class="img-fluid" src="https://media.s-bol.com/g1GJQW2zJNr/550x779.jpg">-->
-<!--  </div>-->
-<!--    <div class="movie">-->
-<!--    <img class="img-fluid" src="https://media.s-bol.com/g1GJQW2zJNr/550x779.jpg">-->
-<!--  </div>-->
-<!--    <div class="movie">-->
-<!--    <img class="img-fluid" src="https://media.s-bol.com/g1GJQW2zJNr/550x779.jpg">-->
-<!--  </div>  <div class="movie">-->
-<!--    <img class="img-fluid" src="https://media.s-bol.com/g1GJQW2zJNr/550x779.jpg">-->
-<!--  </div>-->
+
+	<div class="card movie-card" style="background-image:url({{url_for('static', filename='images/movies/interstellar.jpg')}});">
+		<div class="card-img-overlay">
+			<h5 class="card-title">Interstellar</h5>
+			<p class="card-text">2014</p>
+		</div>
+	</div>
+
+	<div class="card movie_card">
+		<img src="{{url_for('static', filename='images/movies/captain-marvel.jpg')}}" class="movie card-img-top" alt="...">
+		<div class="card-body">
+			<i class="fas fa-play play_button" data-toggle="tooltip" data-placement="bottom" title="Play Trailer"></i>
+			<h5 class="card-title">Captain Marvel</h5>
+			<span class="movie_info">2019</span>
+		</div>
+	</div>
+
 </div>
 {% endblock %}

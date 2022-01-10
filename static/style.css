@@ -88,7 +88,7 @@ body {
 .card {
     background-color: var(--gray-600) !important;
     color: #fff;
-    width: 30em;
+    width: 16em;
 }
 
 .btn-primary {
@@ -177,7 +177,17 @@ input::placeholder {
     min-width: 0;
 }
 
+.movie {
+  width: 16em;
+}
+
 .responsive {
 	width: 100%;
 	height: auto;
+}
+
+.movie-card {
+	background:linear-gradient(to bottom, rgba(0,0,0,0) 20%, rgba(0,0,0,1));
+	background-repeat:no-repeat;
+	background-size:contain;
 }
