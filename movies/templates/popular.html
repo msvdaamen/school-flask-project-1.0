@@ -8,13 +8,13 @@
 <div class="movies-container">
 
 	{% for movie in movies %}
-    		<div class="movie-card">
+	<div class="movie-card">
 		<img src="{{url_for('static', filename='images/movies/captain-marvel.jpg')}}" class="movie card-img-top" alt="...">
 		<div class="movie-info card-body">
 			<i class="fas fa-play play_button" data-toggle="tooltip" data-placement="bottom" title="Play Trailer"></i>
-			<h5 class="card-title">Captain Marvel</h5>
+			<h5 class="card-title">{{ movie.title }}</h5>
 			<div class="movie-card-footer">
-				<span class="movie_info">2019</span>
+				<span class="movie_info">{{ movie.date.strftime('%Y') }}</span>
 				<span class="rating">6.8</span>
 			</div>
 		</div>
