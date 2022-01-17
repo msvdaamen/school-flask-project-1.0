@@ -42,11 +42,54 @@
 			</div>
 			<div class="modal-body">
 				<div class="content">
-					<img id="movie-modal-cover-preview" src="">
-					<input id="movie-modal-cover-upload" type="file" hidden>
-					<input id="movie-modal-title-input" type="text">
-					<input id="movie-modal-date-input" type="text">
-					<button id="movie-modal-submit-button">Opslaan</button>
+					<div class="row">
+						<div class="col-md-9">
+
+							<div class="title">
+								<div class="title-icon">
+									<i class="far fa-window-maximize"></i>
+								</div>
+								<div class="title-text w-full">
+									<input class="form-control" placeholder="Film titel" id="movie-modal-title-input" type="text">
+								</div>
+							</div>
+
+							<div class="title">
+								<div class="title-icon">
+									<i class="fas fa-align-justify"></i>
+								</div>
+								<div class="title-text w-full">
+									<span>Beschrijving</span>
+								</div>
+							</div>
+
+							<div class="gutter">
+								<textarea class="form-control" id="movie-modal-desc-input" rows="3" placeholder="Voer hier je beschrijving in."></textarea>
+							</div>
+
+							<div class="title">
+								<div class="title-icon">
+									<i class="fas fa-calendar"></i>
+								</div>
+								<div class="title-text w-full">
+									<input class="form-control" placeholder="Release datum" id="movie-modal-date-input" 1type="text">
+								</div>
+							</div>
+
+						</div>
+						<div class="col-md-3">
+							<div class="d-flex" style="justify-content: flex-end;">
+								<input id="movie-modal-cover-upload" type="file" hidden>
+								<img id="movie-modal-cover-preview" src="">
+							</div>
+						</div>
+					</div>
+					<br>
+					<br>
+					<br>
+					<br>
+					<br>
+<!--					<button id="movie-modal-submit-button">Opslaan</button>-->
 				</div>
 			</div>
 <!--			<div class="modal-footer">-->

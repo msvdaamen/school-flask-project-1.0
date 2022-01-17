@@ -45,7 +45,53 @@
 }
 
 #movie-modal #movie-modal-cover-preview {
-    min-width: 20px;
-    min-height: 40px;
+    width: 150px;
+    height: 225px;
     background-color: white;
+}
+
+
+#movie-modal-desc-input {
+    resize: none;
+    color: white;
+}
+
+.form-control {
+    cursor: pointer;
+    padding: 0;
+    background-color: transparent !important;
+    border: none;
+}
+
+.form-control::placeholder {
+    color: #fff;
+}
+
+.form-control:focus {
+    padding: 2px 5px;
+    background-color: var(--gray-500) !important;
+}
+
+.gutter {
+    margin-left: 55px;
+}
+
+.title {
+    display: flex;
+    margin: 12px 40px 8px 56px;
+    min-height: 32px;
+    position: relative;
+    z-index: 1;
+}
+
+.title-icon {
+    align-self: center;
+    left: -40px;
+    position: absolute;
+}
+
+.title-text {
+    align-items: center;
+    display: flex;
+    min-height: 32px;
 }
