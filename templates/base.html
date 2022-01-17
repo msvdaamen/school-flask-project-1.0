@@ -11,7 +11,7 @@
   {% block head %}{% endblock %}
 </head>
 <body>
-<div class="side-bar p-3 text-white bg-dark">
+<div class="d-flex flex-column side-bar p-3 text-white bg-dark">
   <img class="responsive" src="{{url_for('static', filename='images/icon.png')}}"/>
   <hr>
     <ul class="nav nav-pills flex-column mb-auto">
@@ -32,8 +32,8 @@
       </li>
     </ul>
     {% if current_user.is_authenticated  %}
-    <hr>
-    <div class="dropdown">
+    <div class="dropdown logout">
+      <hr>
       <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
         <img src="{{url_for('static', filename='images/user_icon.png')}}" width="24" height="24" class="rounded-circle me-2">
         <strong>{{current_user.email}}</strong>
@@ -43,6 +43,12 @@
         <li><hr class="dropdown-divider"></li>
         <li><a class="dropdown-item" href="{{ url_for('auth.logout') }}">Sign out</a></li>
       </ul>
+  </div>
+  {% else %}
+  <div>
+    <a href="{{ url_for('auth.login') }}">
+      <button class="btn btn-primary w-100">Login</button>
+    </a>
   </div>
   {% endif %}
 </div>

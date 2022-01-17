@@ -53,6 +53,7 @@ body {
 }
 
 .side-bar {
+    display: flex;
     width: 280px;
     position: fixed;
     height: 100vh;
@@ -114,7 +115,6 @@ body {
 .btn {
     height: 3rem !important;
     padding: 0 24px !important;
-    width: 140px !important;
 }
 
 hr {
@@ -169,8 +169,8 @@ input::placeholder {
 }
 
 .responsive {
-	width: 100%;
-	height: auto;
+    width: 100%;
+	object-fit: contain;
 }
 
 
