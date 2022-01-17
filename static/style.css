@@ -173,24 +173,3 @@ input::placeholder {
 	object-fit: contain;
 }
 
-
-
-.movie-modal > .modal-dialog > .modal-content > .modal-header > .modal-close {
-    position: absolute;
-    right: 1rem;
-    top: 1rem;
-    border-radius: 50%;
-    width: 30px;
-    height: 30px;
-    border-color: transparent;
-    transition: all 200ms;
-    color: #fff !important;
-    background-color: rgba(0, 0, 0, 0.5);
-}
-.movie-modal > .modal-dialog > .modal-content > .modal-header > .modal-close:hover {
-    background-color: rgba(0, 0, 0, 0.2);
-}
-.movie-modal .modal-dialog > .modal-content {
-    background-color: var(--gray-800) !important;
-    border-color: var(--gray-800) !important;
-}

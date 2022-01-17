@@ -9,6 +9,10 @@ app.config.from_file("config.json", load=json.load)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://root:@localhost/movie-project?charset=utf8mb4'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
+UPLOAD_FOLDER = 'public/images'
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
+app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
+
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
@@ -30,6 +34,7 @@ from directors.models.director import Director
 from actors.models.actor import Actor
 from movies.models.movie import Movie
 from movies.models.movieRole import MovieRole
+from images.models.Image import Image
 
 @login_manager.user_loader
 def load_user(user_id):
