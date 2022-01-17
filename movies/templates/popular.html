@@ -25,7 +25,7 @@
 {% endblock %}
 
 {% block body %}
-<div class="modal fade movie-modal" tabindex="-1" role="dialog" id="movie-modal">
+<div class="modal fade movie-modal" tabindex="-1" role="dialog" id="movie-modal" data-type="create">
 	<div class="modal-dialog modal-xl" id="movie-modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -34,9 +34,8 @@
 					<span aria-hidden="true">&times;</span>
 				</button>
 				<div class="banner">
-					<input type="file" hidden id="movie-modal-banner-file-upload">
-					<div class="banner-preview" id="movie-modal-preview-banner"></div>
-					<img id="movie-modal-preview-banner-preview" src="">
+					<input type="file" hidden id="movie-modal-banner-upload">
+					<img id="movie-modal-banner-preview" src="">
 <!--					<img src="https://www.vvng.com/wp-content/uploads/2019/03/Captain-Marvel.jpg" alt="">-->
 				</div>
 			</div>
@@ -57,5 +56,5 @@
 	</div>
 </div>
 
-<script src="{{url_for('static', filename='js/movies.js')}}"></script>
+<script src="{{url_for('static', filename='js/movies.js')}}" defer></script>
 {% endblock %}
