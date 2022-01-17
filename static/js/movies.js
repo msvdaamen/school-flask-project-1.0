@@ -39,7 +39,9 @@ modalEl.addEventListener('hide.bs.modal', () => {
 document.getElementById('movie-modal-preview-banner').addEventListener('click', () => {
     document.getElementById('movie-modal-banner-file-upload').click();
 });
-
+document.getElementById('movie-modal-cover-file-upload').addEventListener('change', (event) => {
+    setModalPreviewBanner();
+});
 document.getElementById('movie-modal-banner-file-upload').addEventListener('change', (event) => {
     setModalPreviewBanner();
 });
@@ -53,6 +55,11 @@ function setModalPreviewBanner() {
     }
     const file = document.getElementById('movie-modal-banner-file-upload').files[0];
     document.getElementById('movie-modal-preview-banner-preview').src = URL.createObjectURL(file);
+}
+
+function setModalPreviewCover() {
+    const file = document.getElementById('movie-modal-cover-upload').files[0];
+    document.getElementById('movie-modal-preview-caver-preview').src = URL.createObjectURL(file);
 }
 
 
