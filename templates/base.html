@@ -16,7 +16,7 @@
   <hr>
     <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item">
-        <a class="nav-link active">
+        <a href="{{ url_for('movies.showPopular') }}"  class="nav-link {{ 'active' if active_page == 'popular' else '' }}">
           Trending Movies
         </a>
       </li>
@@ -39,7 +39,7 @@
         <strong>{{current_user.email}}</strong>
       </a>
       <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-        <li><a class="dropdown-item" href="{{ url_for('profile.showProfile') }}">Profile</a></li>
+        <li><a class="dropdown-item {{ 'active' if active_page == 'profile' else '' }}" href="{{ url_for('profile.showProfile') }}">Profile</a></li>
         <li><hr class="dropdown-divider"></li>
         <li><a class="dropdown-item" href="{{ url_for('auth.logout') }}">Sign out</a></li>
       </ul>

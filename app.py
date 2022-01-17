@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, redirect
 import json
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -39,3 +39,8 @@ from images.models.Image import Image
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.filter_by(id=user_id).first()
+
+
+@app.route("/")
+def home():
+    return redirect('/movies/popular')

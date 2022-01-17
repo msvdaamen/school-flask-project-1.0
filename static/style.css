@@ -135,6 +135,15 @@ a {
     text-decoration: none !important;
 }
 
+.nav-link {
+    color: #fff !important;
+}
+
+.dropdown-menu-dark .dropdown-item.active, .dropdown-menu-dark .dropdown-item:active {
+    color: #fff;
+    background-color: var(--gray-500);
+}
+
 a:hover {
     text-decoration: underline;
 }
@@ -145,6 +154,10 @@ span {
 
 .rounded-full {
     border-radius: 1rem !important;
+}
+
+.round-border {
+    border-radius: 8px !important;
 }
 
 input {
