@@ -1,4 +1,4 @@
-from flask import Flask, redirect
+from flask import Flask, redirect, send_from_directory
 import json
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
@@ -15,6 +15,10 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
+
+@app.route('/public/images/<path:filename>')
+def custom_static(filename):
+    return send_from_directory(app.root_path + '/public/images/', filename)
 
 from auth.views import bp as AuthBlueprint
 from movies.views import bp as MoviesBlueprint

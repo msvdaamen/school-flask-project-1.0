@@ -11,7 +11,7 @@
 
 	{% for movie in movies %}
 	<div class="movie-card" data-id="{{movie.id}}">
-		<img src="{{url_for('static', filename='images/movies/captain-marvel.jpg')}}" class="movie card-img-top" alt="...">
+		<img src="http://localhost:5000/public/images/{{movie.cover.filename}}" class="movie card-img-top" alt="...">
 		<div class="movie-info card-body">
 			<i class="fas fa-play play_button" data-toggle="tooltip" data-placement="bottom" title="Play Trailer"></i>
 			<h5 class="card-title">{{ movie.title }}</h5>
@@ -29,13 +29,14 @@
 <div class="modal fade movie-modal" tabindex="-1" role="dialog" id="movie-modal" data-type="create">
 	<div class="modal-dialog modal-xl" id="movie-modal-dialog" role="document">
 		<div class="modal-content">
+			<form method="post" action="/movies" enctype="multipart/form-data" >
 			<div class="modal-header">
 <!--				<h5 class="modal-title">Modal title</h5>-->
 				<button type="button" class="modal-close" data-bs-dismiss="modal">
 					<span aria-hidden="true">&times;</span>
 				</button>
 				<div class="banner">
-					<input type="file" hidden id="movie-modal-banner-upload">
+					<input type="file" hidden id="movie-modal-banner-upload" name="banner">
 					<img id="movie-modal-banner-preview" src="">
 <!--					<img src="https://www.vvng.com/wp-content/uploads/2019/03/Captain-Marvel.jpg" alt="">-->
 				</div>
@@ -50,7 +51,7 @@
 									<i class="far fa-window-maximize"></i>
 								</div>
 								<div class="title-text w-full">
-									<input class="form-control" placeholder="Film titel" id="movie-modal-title-input" type="text">
+									<input class="form-control" placeholder="Film titel" id="movie-modal-title-input" type="text" name="title">
 								</div>
 							</div>
 
@@ -64,7 +65,7 @@
 							</div>
 
 							<div class="gutter">
-								<textarea class="form-control" id="movie-modal-desc-input" rows="3" placeholder="Voer hier je beschrijving in."></textarea>
+								<textarea class="form-control" id="movie-modal-desc-input" rows="3" placeholder="Voer hier je beschrijving in." name="description"></textarea>
 							</div>
 
 							<div class="title">
@@ -72,14 +73,14 @@
 									<i class="fas fa-calendar"></i>
 								</div>
 								<div class="title-text w-full">
-									<input class="form-control" placeholder="Release datum" id="movie-modal-date-input" 1type="text">
+									<input class="form-control" placeholder="Release datum" id="movie-modal-date-input" 1type="text" name="date">
 								</div>
 							</div>
 
 						</div>
 						<div class="col-md-3">
 							<div class="d-flex" style="justify-content: flex-end;">
-								<input id="movie-modal-cover-upload" type="file" hidden>
+								<input id="movie-modal-cover-upload" type="file" hidden name="cover">
 								<img id="movie-modal-cover-preview" src="">
 							</div>
 						</div>
@@ -89,9 +90,10 @@
 					<br>
 					<br>
 					<br>
-<!--					<button id="movie-modal-submit-button">Opslaan</button>-->
+					<button class="btn btn-primary" id="movie-modal-submit-button" type="submit">Opslaan</button>
 				</div>
 			</div>
+			</form>
 <!--			<div class="modal-footer">-->
 <!--				<button type="button" class="btn btn-primary">Save changes</button>-->
 <!--				<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>-->

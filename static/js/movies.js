@@ -4,10 +4,12 @@ const movieModal = new bootstrap.Modal(modalEl, {});
 const movieCards = document.getElementById('movies-container');
 
 let movieModalData = null;
+let movieModalType = 'create';
 
 movieCards.addEventListener('click', async (event) => {
     const target = isCardClick(event.path);
     if (target) {
+        modalEl.dataset.type = 'update';
         const id = target.dataset.id;
         movieModalData = await fetch(`http://localhost:5000/movies/${id}`).then(r => r.json());
         setModalInfo(target, movieModalData);
@@ -15,6 +17,10 @@ movieCards.addEventListener('click', async (event) => {
     }
 });
 
+modalEl.addEventListener('show.bs.modal', () => {
+    movieModalType = modalEl.dataset.type;
+    checkCanSaveMovie();
+})
 modalEl.addEventListener('hide.bs.modal', () => {
     console.log('hide modal');
 })
@@ -42,6 +48,12 @@ const modalBannerPreview = document.getElementById('movie-modal-banner-preview')
 //     }).then(r => r.json());
 //     console.log(response)
 // });
+
+// modalSaveButton.addEventListener('click', () => {
+//     if (movieModalType === 'create') {
+//         createMovie();
+//     }
+// });
 modalCoverPreview.addEventListener('click', () => {
     modalCoverInput.click();
 });
@@ -50,9 +62,11 @@ modalBannerPreview.addEventListener('click', () => {
 });
 modalCoverInput.addEventListener('change', (event) => {
     setModalPreviewCover();
+    checkCanSaveMovie();
 });
 modalBannerInput.addEventListener('change', (event) => {
     setModalPreviewBanner();
+    checkCanSaveMovie();
 });
 modalTitleInput.addEventListener('keyup', () => {
     checkCanSaveMovie();
@@ -61,11 +75,29 @@ modalDateInput.addEventListener('keyup', () => {
     checkCanSaveMovie();
 });
 
-movieModal.toggle();
-checkCanSaveMovie();
+// movieModal.toggle();
+
+
+async function createMovie() {
+    const cover = modalCoverInput.files[0];
+    const banner = modalBannerInput.files[0];
+    const title = modalTitleInput.value;
+    const date = modalDateInput.value;
+
+    const payload = new FormData();
+    payload.append('cover', cover, cover.name);
+    payload.append('banner', banner, banner.name);
+    payload.append('title', title);
+    payload.append('date', date);
+    const response = await fetch(`http://localhost:5000/movies`, {
+        method: 'POST',
+        body: payload
+    }).then(r => r.json());
+    console.log(response)
+}
 
 function checkCanSaveMovie() {
-    if (!modalTitleInput.value.trim() || !modalDateInput.value.trim()) {
+    if (!modalTitleInput.value.trim() || !modalDateInput.value.trim() || (movieModalType === 'create' && (!modalCoverInput.files.length || !modalCoverInput.files.length))) {
         modalSaveButton.disabled = true;
         return;
     }
