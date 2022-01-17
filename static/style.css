@@ -172,7 +172,10 @@ input::placeholder {
 	width: 100%;
 	height: auto;
 }
-.modal-close {
+
+
+
+.movie-modal > .modal-dialog > .modal-content > .modal-header > .modal-close {
     position: absolute;
     right: 1rem;
     top: 1rem;
@@ -184,10 +187,10 @@ input::placeholder {
     color: #fff !important;
     background-color: rgba(0, 0, 0, 0.5);
 }
-.modal-close:hover {
+.movie-modal > .modal-dialog > .modal-content > .modal-header > .modal-close:hover {
     background-color: rgba(0, 0, 0, 0.2);
 }
-.modal-content {
+.movie-modal .modal-dialog > .modal-content {
     background-color: var(--gray-800) !important;
     border-color: var(--gray-800) !important;
 }

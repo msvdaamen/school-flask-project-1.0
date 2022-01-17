@@ -9,7 +9,7 @@
 <div class="movies-container" id="movies-container">
 
 	{% for movie in movies %}
-	<div class="movie-card">
+	<div class="movie-card" data-id="{{movie.id}}">
 		<img src="{{url_for('static', filename='images/movies/captain-marvel.jpg')}}" class="movie card-img-top" alt="...">
 		<div class="movie-info card-body">
 			<i class="fas fa-play play_button" data-toggle="tooltip" data-placement="bottom" title="Play Trailer"></i>
@@ -25,7 +25,7 @@
 {% endblock %}
 
 {% block body %}
-<div class="modal fade" tabindex="-1" role="dialog" id="movie-modal">
+<div class="modal fade movie-modal" tabindex="-1" role="dialog" id="movie-modal">
 	<div class="modal-dialog modal-xl" id="movie-modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -45,7 +45,7 @@
 <!--					<img src="https://www.vvng.com/wp-content/uploads/2019/03/Captain-Marvel.jpg" alt="">-->
 <!--				</div>-->
 				<div class="content">
-					<p>Modal body text goes here.</p>s
+					<p id="movie-modal-title"></p>
 				</div>
 			</div>
 <!--			<div class="modal-footer">-->
