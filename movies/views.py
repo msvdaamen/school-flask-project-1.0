@@ -24,7 +24,7 @@ def showPopular():
 def getMovie(id):
     cover = aliased(Image)
     banner = aliased(Image)
-    movie = Movie.query.join(cover, Movie.cover).join(banner, Movie.banner).filter(Movie.id == id).first()
+    movie = Movie.query.join(cover, Movie.cover).join(banner, Movie.banner).join(Movie.director).filter(Movie.id == id).first()
     return movie.toJson()
 
 
@@ -71,7 +71,7 @@ def updateMovie(id):
     if payload.directorFirstName.data and payload.directorLastName.data:
         directorFirstName = payload.directorFirstName.data
         directorLastName = payload.directorLastName.data
-        director = Director.query.filter(Director.first_name == directorFirstName and Director.last_name == directorLastName).first()
+        director = Director.query.filter(Director.first_name == directorFirstName).filter(Director.last_name == directorLastName).first()
         if not director:
             director = Director(directorFirstName, directorLastName)
             db.session.add(director)

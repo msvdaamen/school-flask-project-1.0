@@ -9,6 +9,7 @@ class Movie(db.Model):
 
     id = Column(Integer, primary_key=True, autoincrement=True)
     director_id = Column(Integer, ForeignKey("directors.id", ondelete="CASCADE"), nullable=False)
+    director = relationship("Director", back_populates="movie_director", foreign_keys='Movie.director_id', uselist=False)
     title = Column(String(255), nullable=False)
     description = Column(Text(), nullable=False)
     date = Column(Date, nullable=False)
@@ -35,10 +36,13 @@ class Movie(db.Model):
             'description': self.description,
             'date': self.date,
             'cover': None,
-            'banner': None
+            'banner': None,
+            'director': None
         }
         if self.cover:
             json['cover'] = self.cover.toJson()
         if self.banner:
             json['banner'] = self.banner.toJson()
+            if self.director:
+                json['director'] = self.director.toJson()
         return json

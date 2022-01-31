@@ -37,6 +37,8 @@ const modalBannerInput = document.getElementById('movie-modal-banner-upload');
 const modalTitleInput = document.getElementById('movie-modal-title-input');
 const modalDescriptionInput = document.getElementById('movie-modal-description-input');
 const modalDateInput = document.getElementById('movie-modal-date-input');
+const modelDirectorFirstNameInput = document.getElementById('movie-modal-director-first-name');
+const modelDirectorLastNameInput = document.getElementById('movie-modal-director-last-name');
 const modalSaveButton = document.getElementById('movie-modal-submit-button');
 
 const modalCoverPreview = document.getElementById('movie-modal-cover-preview');
@@ -106,6 +108,8 @@ function setModalInfo(movie) {
     modalBannerPreview.src = `http://localhost:5000/public/images/${movie.banner.filename}`;
     modalCoverPreview.src = `http://localhost:5000/public/images/${movie.cover.filename}`;
     modalDateInput.value = formatDate(movie.date);
+    modelDirectorFirstNameInput.value = movie.director.first_name;
+    modelDirectorLastNameInput.value = movie.director.last_name;
     for (let i = 0; i < 10; i++) {
         const wrapper = document.createElement('div');
         const firstName = document.createElement('input');
