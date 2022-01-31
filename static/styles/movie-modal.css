@@ -95,3 +95,7 @@
     display: flex;
     min-height: 32px;
 }
+
+.director {
+    margin-top: 30px;
+}
