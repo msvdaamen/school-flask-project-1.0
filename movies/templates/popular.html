@@ -23,13 +23,17 @@
 	</div>
 	{% endfor %}
 </div>
+<div class="create-button">
+	<button class="btn btn-primary" id="create-movie-button"><i class="fas fa-plus"></i></button>
+</div>
 {% endblock %}
 
 {% block body %}
-<div class="modal fade movie-modal" tabindex="-1" role="dialog" id="movie-modal" data-type="create">
+<div class="modal fade movie-modal movie-create" tabindex="-1" role="dialog" id="movie-modal" data-type="create">
 	<div class="modal-dialog modal-xl" id="movie-modal-dialog" role="document">
 		<div class="modal-content">
-			<form method="post" action="/movies" enctype="multipart/form-data" >
+			<form id="movie-form" method="post" action="/movies" enctype="multipart/form-data">
+				<input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
 			<div class="modal-header">
 <!--				<h5 class="modal-title">Modal title</h5>-->
 				<button type="button" class="modal-close" data-bs-dismiss="modal">
@@ -37,7 +41,7 @@
 				</button>
 				<div class="banner">
 					<input type="file" hidden id="movie-modal-banner-upload" name="banner">
-					<img id="movie-modal-banner-preview" src="">
+					<img id="movie-modal-banner-preview" src="" onerror="this.src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='">
 <!--					<img src="https://www.vvng.com/wp-content/uploads/2019/03/Captain-Marvel.jpg" alt="">-->
 				</div>
 			</div>
@@ -65,7 +69,7 @@
 							</div>
 
 							<div class="gutter">
-								<textarea class="form-control" id="movie-modal-desc-input" rows="3" placeholder="Voer hier je beschrijving in." name="description"></textarea>
+								<textarea class="form-control" id="movie-modal-description-input" rows="3" placeholder="Voer hier je beschrijving in." name="description"></textarea>
 							</div>
 
 							<div class="title">
@@ -81,7 +85,7 @@
 						<div class="col-md-3">
 							<div class="d-flex" style="justify-content: flex-end;">
 								<input id="movie-modal-cover-upload" type="file" hidden name="cover">
-								<img id="movie-modal-cover-preview" src="">
+								<img id="movie-modal-cover-preview" src="" onerror="this.src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='">
 							</div>
 						</div>
 					</div>

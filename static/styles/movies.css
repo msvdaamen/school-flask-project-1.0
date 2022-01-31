@@ -30,3 +30,17 @@
 .movie {
 	height: 400px;
 }
+.create-button {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+}
+.create-button > button {
+    border-radius: 1rem;
+    width: 3rem;
+    /*text-align: center;*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-color: transparent;
+}

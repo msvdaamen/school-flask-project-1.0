@@ -1,7 +1,9 @@
+import os
+
 from sqlalchemy import Column, Integer, String
 from sqlalchemy.orm import relationship
 
-from app import db
+from app import db, app
 
 
 class Image(db.Model):
@@ -21,3 +23,10 @@ class Image(db.Model):
             'id': self.id,
             'filename': self.filename
         }
+
+    def delete(delete_id):
+        image = Image.query.filter(Image.id == delete_id).first()
+        if image:
+            Image.query.filter(Image.id == delete_id).delete()
+            os.remove(os.path.join(app.config['UPLOAD_FOLDER'], image.filename))
+            db.session.commit()

@@ -35,24 +35,65 @@ def getMovie(id):
 def createMovie():
     payload = CreateMovieForm()
     if not payload.validate():
-        return "Bad request", 400
+        return redirect(url_for('movies.showPopular'))
     cover_id = saveImage(request.files['cover'])
     banner_id = saveImage(request.files['banner'])
     title = payload.title.data
+    description = payload.description.data
     date = payload.date.data
-    tempName = ''.join(random.choice(string.ascii_lowercase) for i in range(16))
-    insertDirector = Director("Temp", tempName)
-    db.session.add(insertDirector)
-    db.session.commit()
-    movie = Movie(cover_id, banner_id, insertDirector.id, title, date)
+    directorFirstName = payload.directorFirstName.data
+    directorLastName = payload.directorLastName.data
+    director = Director.query.filter(Director.first_name == directorFirstName and Director.last_name == directorLastName).first()
+    if not director:
+        director = Director(directorFirstName, directorLastName)
+        db.session.add(director)
+        db.session.commit()
+    movie = Movie(cover_id, banner_id, director.id, title, description, date)
     db.session.add(movie)
     db.session.commit()
     return redirect(url_for('movies.showPopular'))
 
 
 
-# @bp.post('<int:id d):
-    # payload = UpdateMovieForm()
+@bp.post('/<int:id>')
+def updateMovie(id):
+    payload = UpdateMovieForm()
+    if not payload.validate():
+        return redirect(url_for('movies.showPopular'))
+    movie = Movie.query.filter(Movie.id == id).first()
+    if not movie:
+        return redirect(url_for('movies.showPopular'))
+    old_cover_id = None
+    old_banner_id = None
+    if payload.title.data:
+        movie.title = payload.title.data
+    if payload.description.data:
+        movie.description = payload.description.data
+    if payload.date.data:
+        movie.date = payload.date.data
+    if payload.directorFirstName.data and payload.directorLastName.data:
+        directorFirstName = payload.directorFirstName.data
+        directorLastName = payload.directorLastName.data
+        director = Director.query.filter(Director.first_name == directorFirstName and Director.last_name == directorLastName).first()
+        if not director:
+            director = Director(directorFirstName, directorLastName)
+            db.session.add(director)
+            db.session.commit()
+        movie.director_id = director.id
+    if request.files['cover']:
+        cover_id = saveImage(request.files['cover'])
+        old_cover_id = movie.cover_id
+        movie.cover_id = cover_id
+    if request.files['banner']:
+        banner_id = saveImage(request.files['banner'])
+        old_banner_id = movie.banner_id
+        movie.banner_id = banner_id
+    db.session.add(movie)
+    db.session.commit()
+    if old_cover_id:
+        Image.delete(old_cover_id)
+    if old_banner_id:
+        Image.delete(old_banner_id)
     # if not payload.validate():
     #     return "Bad request", 400
     # cover = payload.cover.data
@@ -64,6 +105,7 @@ def createMovie():
     # return {
     #     "hier": "adasd"
     # }
+    return redirect(url_for('movies.showPopular'))
 
 
 

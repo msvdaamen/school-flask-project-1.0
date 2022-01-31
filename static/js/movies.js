@@ -10,9 +10,11 @@ movieCards.addEventListener('click', async (event) => {
     const target = isCardClick(event.path);
     if (target) {
         modalEl.dataset.type = 'update';
+        modalEl.classList.remove('movie-create');
+        modalEl.classList.add('movie-update');
         const id = target.dataset.id;
         movieModalData = await fetch(`http://localhost:5000/movies/${id}`).then(r => r.json());
-        setModalInfo(target, movieModalData);
+        setModalInfo(movieModalData);
         movieModal.toggle();
     }
 });
@@ -21,39 +23,29 @@ modalEl.addEventListener('show.bs.modal', () => {
     movieModalType = modalEl.dataset.type;
     checkCanSaveMovie();
 })
-modalEl.addEventListener('hide.bs.modal', () => {
-    console.log('hide modal');
+modalEl.addEventListener('hidden.bs.modal', () => {
+    modalEl.dataset.type = 'create';
+    modalEl.classList.add('movie-create');
+    modalEl.classList.remove('movie-update');
+    resetMovieModal();
 })
+const createMovieButton = document.getElementById('create-movie-button');
+const movieForm = document.getElementById('movie-form');
 
 const modalCoverInput = document.getElementById('movie-modal-cover-upload');
 const modalBannerInput = document.getElementById('movie-modal-banner-upload');
 const modalTitleInput = document.getElementById('movie-modal-title-input');
+const modalDescriptionInput = document.getElementById('movie-modal-description-input');
 const modalDateInput = document.getElementById('movie-modal-date-input');
 const modalSaveButton = document.getElementById('movie-modal-submit-button');
 
 const modalCoverPreview = document.getElementById('movie-modal-cover-preview');
 const modalBannerPreview = document.getElementById('movie-modal-banner-preview');
 
-// document.getElementById('movie-modal-save-button').addEventListener('click', async () => {
-//     const id = movieModalData.id;
-//     const fileInput = document.getElementById('movie-modal-image');
-//     const cover = fileInput.files[0];
-//     const title = 'test';
-//     const payload = new FormData();
-//     payload.append('cover', cover, cover.name);
-//     payload.append('title', title);
-//     const response = await fetch(`http://localhost:5000/movies/${id}`, {
-//         method: 'POST',
-//         body: payload
-//     }).then(r => r.json());
-//     console.log(response)
-// });
+createMovieButton.addEventListener('click', () => {
+    movieModal.toggle();
+});
 
-// modalSaveButton.addEventListener('click', () => {
-//     if (movieModalType === 'create') {
-//         createMovie();
-//     }
-// });
 modalCoverPreview.addEventListener('click', () => {
     modalCoverInput.click();
 });
@@ -75,29 +67,8 @@ modalDateInput.addEventListener('keyup', () => {
     checkCanSaveMovie();
 });
 
-// movieModal.toggle();
-
-
-async function createMovie() {
-    const cover = modalCoverInput.files[0];
-    const banner = modalBannerInput.files[0];
-    const title = modalTitleInput.value;
-    const date = modalDateInput.value;
-
-    const payload = new FormData();
-    payload.append('cover', cover, cover.name);
-    payload.append('banner', banner, banner.name);
-    payload.append('title', title);
-    payload.append('date', date);
-    const response = await fetch(`http://localhost:5000/movies`, {
-        method: 'POST',
-        body: payload
-    }).then(r => r.json());
-    console.log(response)
-}
-
 function checkCanSaveMovie() {
-    if (!modalTitleInput.value.trim() || !modalDateInput.value.trim() || (movieModalType === 'create' && (!modalCoverInput.files.length || !modalCoverInput.files.length))) {
+    if (!modalTitleInput.value.trim() || !modalDescriptionInput.value.trim() || !modalDateInput.value.trim() || (movieModalType === 'create' && (!modalCoverInput.files.length || !modalCoverInput.files.length))) {
         modalSaveButton.disabled = true;
         return;
     }
@@ -125,8 +96,44 @@ function isCardClick(path) {
 
 /**
  *
- * @param modal {HTMLDivElement}
+ * @param movie {object}
  */
-function setModalInfo(modal, movie) {
-    document.getElementById('movie-modal-title').innerText = movie.title;
+function setModalInfo(movie) {
+    movieForm.action = `/movies/${movie.id}`;
+    modalTitleInput.value = movie.title;
+    modalDescriptionInput.value = movie.description;
+    modalBannerPreview.src = `http://localhost:5000/public/images/${movie.banner.filename}`;
+    modalCoverPreview.src = `http://localhost:5000/public/images/${movie.cover.filename}`;
+    modalDateInput.value = formatDate(movie.date);
+}
+
+function resetMovieModal() {
+    movieForm.action = `/movies`;
+    modalTitleInput.value = '';
+    modalDescriptionInput.value = '';
+    modalBannerPreview.src = ``;
+    modalCoverPreview.src = ``;
+    modalDateInput.value = '';
+}
+
+/**
+ *
+ * @param date {string}
+ */
+function formatDate(dateString) {
+    const date = new Date(dateString);
+    if (!date) {
+        return null;
+    }
+    const year = date.getFullYear();
+    let month = date.getMonth() + 1;
+    let day = date.getDate();
+    if (month < 10) {
+        month = '0' + month;
+    }
+    if (day < 10) {
+        day = '0' + day;
+    }
+
+    return `${year}-${month}-${day}`;
 }
