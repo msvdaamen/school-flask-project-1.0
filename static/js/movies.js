@@ -106,12 +106,36 @@ function setModalInfo(movie) {
     modalBannerPreview.src = `http://localhost:5000/public/images/${movie.banner.filename}`;
     modalCoverPreview.src = `http://localhost:5000/public/images/${movie.cover.filename}`;
     modalDateInput.value = formatDate(movie.date);
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 2; i++) {
         const wrapper = document.createElement('div');
+
+        const firstNameWrapper = document.createElement('div');
+        const lastNameWrapper = document.createElement('div');
+        const roleWrapper = document.createElement('div');
+
         const firstName = document.createElement('input');
         const lastName = document.createElement('input');
         const role = document.createElement('input');
-        wrapper.append(firstName, lastName, role);
+
+        wrapper.className = "row movie-roles";
+
+        firstNameWrapper.className = "col";
+        lastNameWrapper.className = "col";
+        roleWrapper.className = "col";
+
+        firstName.className = "form-control";
+        lastName.className = "form-control";
+        role.className = "form-control";
+
+        firstName.placeholder = "Voornaam"
+        lastName.placeholder = "Achternaam"
+        role.placeholder = "Personage"
+
+        firstNameWrapper.append(firstName);
+        lastNameWrapper.append(lastName);
+        roleWrapper.append(role);
+
+        wrapper.append(firstNameWrapper, lastNameWrapper, roleWrapper);
         movieModelRolesContainer.appendChild(wrapper);
     }
 }
