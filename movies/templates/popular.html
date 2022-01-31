@@ -42,7 +42,6 @@
 				<div class="banner">
 					<input type="file" hidden id="movie-modal-banner-upload" name="banner">
 					<img id="movie-modal-banner-preview" src="" onerror="this.src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='">
-<!--					<img src="https://www.vvng.com/wp-content/uploads/2019/03/Captain-Marvel.jpg" alt="">-->
 				</div>
 			</div>
 			<div class="modal-body">
@@ -81,15 +80,30 @@
 								</div>
 							</div>
 
+							<div class="title">
+								<div class="title-icon">
+									<i class="fa fa-users"></i>
+								</div>
+								<div class="w-full" id="movie-model-roles-container">
+
+								</div>
+							</div>
+
 						</div>
 						<div class="col-md-3">
+							<div style="display: inline">
+								<i class="fas fa-image"></i>
 								<label class="form-label">Banner</label>
+							</div>
 							<div class="d-flex">
 								<input id="movie-modal-cover-upload" type="file" hidden name="cover">
 								<img id="movie-modal-cover-preview" src="" onerror="this.src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='">
 							</div>
 							<div class="row director">
-								<label class="form-label">Regisseur</label>
+								<div style="display: inline">
+									<i class="fas fa-video"></i>
+									<label class="form-label">Regisseur</label>
+								</div>
 								<div class="col">
 								<input type="text" name="directorFirstName" id="movie-modal-director-first-name" class="form-control" placeholder="Voornaam" aria-label="Voornaam">
 							  </div>

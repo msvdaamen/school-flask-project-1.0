@@ -6,16 +6,13 @@ from flask import render_template, Blueprint, url_for, request
 from sqlalchemy.orm import aliased
 from werkzeug.utils import secure_filename, redirect
 
-from app import ALLOWED_EXTENSIONS, app, db
+from app import app, db
 from directors.models.director import Director
 from images.models.Image import Image
 from movies.forms import UpdateMovieForm, CreateMovieForm
 from movies.models.movie import Movie
 
 bp = Blueprint('movies', __name__, url_prefix='/movies', template_folder='templates')
-
-def allowed_file(filename):
-    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @bp.get("/popular")
 def showPopular():
@@ -94,17 +91,6 @@ def updateMovie(id):
         Image.delete(old_cover_id)
     if old_banner_id:
         Image.delete(old_banner_id)
-    # if not payload.validate():
-    #     return "Bad request", 400
-    # cover = payload.cover.data
-    # if cover:
-    #     filename = secure_filename(cover.filename)
-    #     extension = filename.split('.')[-1]
-    #     file_name = ''.join(random.choice(string.ascii_lowercase) for i in range(16)) + "." + extension
-    #     cover.save(os.path.join(app.config['UPLOAD_FOLDER'], file_name))
-    # return {
-    #     "hier": "adasd"
-    # }
     return redirect(url_for('movies.showPopular'))
 
 

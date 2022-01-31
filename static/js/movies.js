@@ -41,6 +41,7 @@ const modalSaveButton = document.getElementById('movie-modal-submit-button');
 
 const modalCoverPreview = document.getElementById('movie-modal-cover-preview');
 const modalBannerPreview = document.getElementById('movie-modal-banner-preview');
+const movieModelRolesContainer = document.getElementById('movie-model-roles-container');
 
 createMovieButton.addEventListener('click', () => {
     movieModal.toggle();
@@ -105,6 +106,14 @@ function setModalInfo(movie) {
     modalBannerPreview.src = `http://localhost:5000/public/images/${movie.banner.filename}`;
     modalCoverPreview.src = `http://localhost:5000/public/images/${movie.cover.filename}`;
     modalDateInput.value = formatDate(movie.date);
+    for (let i = 0; i < 10; i++) {
+        const wrapper = document.createElement('div');
+        const firstName = document.createElement('input');
+        const lastName = document.createElement('input');
+        const role = document.createElement('input');
+        wrapper.append(firstName, lastName, role);
+        movieModelRolesContainer.appendChild(wrapper);
+    }
 }
 
 function resetMovieModal() {
