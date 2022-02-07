@@ -6,11 +6,13 @@ from flask import render_template, Blueprint, url_for, request
 from sqlalchemy.orm import aliased
 from werkzeug.utils import secure_filename, redirect
 
-from app import app, db
+from actors.models.actor import Actor
+from app import app, db, csrf
 from directors.models.director import Director
 from images.models.Image import Image
-from movies.forms import UpdateMovieForm, CreateMovieForm
+from movies.forms import UpdateMovieForm, CreateMovieForm, CreateMovieRole
 from movies.models.movie import Movie
+from movies.models.movieRole import MovieRole
 
 bp = Blueprint('movies', __name__, url_prefix='/movies', template_folder='templates')
 
@@ -24,7 +26,11 @@ def showPopular():
 def getMovie(id):
     cover = aliased(Image)
     banner = aliased(Image)
-    movie = Movie.query.join(cover, Movie.cover).join(banner, Movie.banner).join(Movie.director).filter(Movie.id == id).first()
+    movie = Movie.query.join(cover, Movie.cover)\
+        .join(banner, Movie.banner)\
+        .join(Movie.director)\
+        .join(Movie.movieRole, MovieRole.actor, isouter=True)\
+        .filter(Movie.id == id).first()
     return movie.toJson()
 
 
@@ -93,6 +99,35 @@ def updateMovie(id):
         Image.delete(old_banner_id)
     return redirect(url_for('movies.showPopular'))
 
+@csrf.exempt
+@bp.post('/<int:id>/role')
+def addRole(id):
+    payload = CreateMovieRole()
+    if not payload.validate():
+        return payload.errors
+    first_name = payload.first_name.data
+    last_name = payload.last_name.data
+    role = payload.role.data
+    existingActor = Actor.query.filter(Actor.first_name == first_name).filter(Actor.last_name == last_name).first()
+    if not existingActor:
+        existingActor = Actor(first_name, last_name)
+        db.session.add(existingActor)
+        db.session.commit()
+    movieRole = MovieRole(id, existingActor.id, role)
+    db.session.add(movieRole)
+    db.session.commit()
+    return {
+        'id': movieRole.id,
+        'first_name': existingActor.first_name,
+        'last_name': existingActor.last_name,
+        'role': movieRole.name
+    }
+
+@csrf.exempt
+@bp.post('/<int:id>/role/<int:roleId>/delete')
+def removeRol(id, roleId):
+    MovieRole.query.filter(MovieRole.id == roleId).delete()
+    return {}
 
 
 def saveImage(file):

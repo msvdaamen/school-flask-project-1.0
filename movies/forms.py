@@ -19,3 +19,11 @@ class UpdateMovieForm(FlaskForm):
     date = StringField('date', [validators.Optional()])
     directorFirstName = StringField('directorFirstName', [validators.Optional()])
     directorLastName = StringField('directorLastName', [validators.Optional()])
+
+
+class CreateMovieRole(FlaskForm):
+    class Meta:
+        csrf = False
+    first_name = StringField('first_name', [validators.DataRequired()])
+    last_name = StringField('last_name', [validators.DataRequired()])
+    role = StringField('role', [validators.DataRequired()])

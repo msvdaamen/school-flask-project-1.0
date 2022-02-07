@@ -17,6 +17,8 @@ class Movie(db.Model):
     cover = relationship("Image", back_populates="movie_cover", foreign_keys='Movie.cover_id', uselist=False)
     banner_id = Column(Integer, ForeignKey('images.id', ondelete="RESTRICT"), nullable=False)
     banner = relationship("Image", back_populates="movie_banner", foreign_keys='Movie.banner_id', uselist=False)
+    movieRole = relationship("MovieRole", back_populates="movie", uselist=True)
+
 
     def __init__(self, cover_id, banner_id, director_id, title, description, date):
         self.cover_id = cover_id
@@ -37,12 +39,21 @@ class Movie(db.Model):
             'date': self.date,
             'cover': None,
             'banner': None,
-            'director': None
+            'director': None,
+            'roles': []
         }
         if self.cover:
             json['cover'] = self.cover.toJson()
         if self.banner:
             json['banner'] = self.banner.toJson()
-            if self.director:
-                json['director'] = self.director.toJson()
+        if self.director:
+            json['director'] = self.director.toJson()
+        if self.movieRole:
+            for role in self.movieRole:
+                json['roles'].append({
+                    'id': role.id,
+                    'first_name': role.actor.first_name,
+                    'last_name': role.actor.last_name,
+                    'role': role.name
+                })
         return json
