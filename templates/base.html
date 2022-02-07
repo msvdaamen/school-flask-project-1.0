@@ -16,18 +16,13 @@
   <hr>
     <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item">
-        <a href="{{ url_for('movies.showPopular') }}"  class="nav-link {{ 'active' if active_page == 'popular' else '' }}">
-          Trending Movies
+        <a href="{{ url_for('movies.showRecentAdded') }}"  class="nav-link {{ 'active' if active_page == 'recentAdded' else '' }}">
+          Recent Toegevoegd
         </a>
       </li>
-      <li>
-        <a class="nav-link text-white">
-          New Movies
-        </a>
-      </li>
-      <li>
-        <a href="#" class="nav-link text-white">
-          Top Genres
+      <li class="nav-item">
+        <a href="{{ url_for('movies.showRecentReleased') }}"  class="nav-link {{ 'active' if active_page == 'recentReleased' else '' }}">
+          Recent Gereleased
         </a>
       </li>
     </ul>
@@ -39,15 +34,15 @@
         <strong>{{current_user.email}}</strong>
       </a>
       <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-        <li><a class="dropdown-item {{ 'active' if active_page == 'profile' else '' }}" href="{{ url_for('profile.showProfile') }}">Profile</a></li>
+        <li><a class="dropdown-item {{ 'active' if active_page == 'profile' else '' }}" href="{{ url_for('profile.showProfile') }}">Profiel</a></li>
         <li><hr class="dropdown-divider"></li>
-        <li><a class="dropdown-item" href="{{ url_for('auth.logout') }}">Sign out</a></li>
+        <li><a class="dropdown-item" href="{{ url_for('auth.logout') }}">Uitloggen</a></li>
       </ul>
   </div>
   {% else %}
   <div>
     <a href="{{ url_for('auth.login') }}">
-      <button class="btn btn-primary w-100">Login</button>
+      <button class="btn btn-primary w-100">Log in</button>
     </a>
   </div>
   {% endif %}

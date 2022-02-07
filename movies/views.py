@@ -16,10 +16,16 @@ from movies.models.movieRole import MovieRole
 
 bp = Blueprint('movies', __name__, url_prefix='/movies', template_folder='templates')
 
-@bp.get("/popular")
-def showPopular():
-    movies = Movie.query.join(Movie.cover).all()
+@bp.get("/recent-added")
+def showRecentAdded():
+    movies = Movie.query.join(Movie.cover).order_by(Movie.id.desc()).all()
     return render_template('popular.html', movies=movies)
+
+
+@bp.get("/recent")
+def showRecentReleased():
+    movies = Movie.query.join(Movie.cover).order_by(Movie.date.desc()).all()
+    return render_template('recent.html', movies=movies)
 
 
 @bp.get('/<int:id>')
@@ -38,7 +44,7 @@ def getMovie(id):
 def createMovie():
     payload = CreateMovieForm()
     if not payload.validate():
-        return redirect(url_for('movies.showPopular'))
+        return redirect(url_for('movies.showRecentAdded'))
     cover_id = saveImage(request.files['cover'])
     banner_id = saveImage(request.files['banner'])
     title = payload.title.data
@@ -54,7 +60,7 @@ def createMovie():
     movie = Movie(cover_id, banner_id, director.id, title, description, date)
     db.session.add(movie)
     db.session.commit()
-    return redirect(url_for('movies.showPopular'))
+    return redirect(url_for('movies.showRecentAdded'))
 
 
 
@@ -62,10 +68,10 @@ def createMovie():
 def updateMovie(id):
     payload = UpdateMovieForm()
     if not payload.validate():
-        return redirect(url_for('movies.showPopular'))
+        return redirect(url_for('movies.showRecentAdded'))
     movie = Movie.query.filter(Movie.id == id).first()
     if not movie:
-        return redirect(url_for('movies.showPopular'))
+        return redirect(url_for('movies.showRecentAdded'))
     old_cover_id = None
     old_banner_id = None
     if payload.title.data:
@@ -97,7 +103,7 @@ def updateMovie(id):
         Image.delete(old_cover_id)
     if old_banner_id:
         Image.delete(old_banner_id)
-    return redirect(url_for('movies.showPopular'))
+    return redirect(url_for('movies.showRecentAdded'))
 
 @csrf.exempt
 @bp.post('/<int:id>/role')
@@ -127,6 +133,7 @@ def addRole(id):
 @bp.post('/<int:id>/role/<int:roleId>/delete')
 def removeRol(id, roleId):
     MovieRole.query.filter(MovieRole.id == roleId).delete()
+    db.session.commit()
     return {}
 
 

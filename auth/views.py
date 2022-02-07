@@ -23,7 +23,7 @@ def register():
 @login_required
 def logout():
     logout_user()
-    return redirect(url_for('movies.showPopular'))
+    return redirect(url_for('movies.showRecentAdded'))
 
 
 @bp.post('/login')
@@ -34,9 +34,10 @@ def loginSubmit():
     user = User.query.filter_by(email=form.email.data).first()
 
     if not user or not user.check_password(form.password.data):
-        return 'User does not exist message placeholder'
+        return redirect(url_for("auth.login"))
+
     login_user(user)
-    return redirect(url_for("movies.showPopular"))
+    return redirect(url_for("movies.showRecentAdded"))
 
 
 @bp.post('/register')
@@ -53,4 +54,4 @@ def registerSubmit():
     db.session.add(user)
     db.session.commit()
     login_user(user)
-    return redirect(url_for("movies.showPopular"))
+    return redirect(url_for("movies.showRecentAdded"))

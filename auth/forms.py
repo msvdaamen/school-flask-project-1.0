@@ -3,15 +3,15 @@ from wtforms import validators, StringField, PasswordField, EmailField
 
 
 class RegisterForm(FlaskForm):
-    email = EmailField('Email', [validators.Length(min=6, max=35), validators.DataRequired()])
-    password = PasswordField('Password', [
+    email = EmailField('E-Mailadres', [validators.Length(min=6, max=35), validators.DataRequired()])
+    password = PasswordField('Wachtwoord', [
         validators.DataRequired(),
         validators.EqualTo('confirm', message='Passwords must match')
     ])
-    confirm = PasswordField('Repeat Password', [validators.DataRequired()])
+    confirm = PasswordField('Herhaal Wachtwoord', [validators.DataRequired()])
 
 
 class LoginForm(FlaskForm):
-    email = EmailField('Email Address', [validators.Length(min=6, max=35), validators.DataRequired()])
-    password = PasswordField('Password', [validators.DataRequired()])
+    email = EmailField('E-Mailadres', [validators.Length(min=6, max=35), validators.DataRequired()])
+    password = PasswordField('Wachtwoord', [validators.DataRequired()])
 

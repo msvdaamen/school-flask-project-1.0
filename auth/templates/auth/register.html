@@ -1,32 +1,32 @@
 {% extends 'login-register.base.html' %}
-<title>{% block title %}Registrer {% endblock %}- Movie Rater</title>
+<title>{% block title %}Registreer {% endblock %}- Movie Rater</title>
 
 {% block content %}
 <div class="flex-center vh-100">
   <div class="card">
     <div class="card-body">
       <div class="container">
-        <h1 class="card-title text-center">Sign up</h1>
+        <h1 class="card-title text-center">Registreer</h1>
         <form class="mt-20" method="post">
           {{ form.hidden_tag() }}
           <div class="form-group">
             {{ form.email.label }}
-            {{ form.email(class_="form-control",placeholder="Enter your email") }}
+            {{ form.email(class_="form-control",placeholder="Voer je E-mailadres in") }}
           </div>
           <div class="form-group mt-20">
             {{ form.password.label }}
-            {{ form.password(class_="form-control",placeholder="Enter your password") }}
+            {{ form.password(class_="form-control",placeholder="Voer je Wachtwood in") }}
           </div>
           <div class="form-group mt-20">
             {{ form.confirm.label }}
-            {{ form.confirm(class_="form-control",placeholder="Enter your password") }}
+            {{ form.confirm(class_="form-control",placeholder="Herhaal je Wachtwood in") }}
           </div>
           <hr class="mt-20">
           <button type="submit" class="btn btn-primary w-full">
-            Register
+            Registreer
           </button>
           <div class="mt-10">
-            <a href="{{ url_for('auth.login') }}" class="text-muted">Already have a account?, <b>Sign in!<b/></a>
+            <a href="{{ url_for('auth.login') }}" class="text-muted">Heb je al een account?, <b>Log in!<b/></a>
           </div>
         </form>
         </div>

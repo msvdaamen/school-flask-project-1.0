@@ -50,4 +50,4 @@ def load_user(user_id):
 
 @app.route("/")
 def home():
-    return redirect('/movies/popular')
+    return redirect('/movies/recent-added')

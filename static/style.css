@@ -50,6 +50,7 @@ body {
     background-color: var(--gray-800);
     width: 100vw;
     height: 100vh;
+    overflow-x: hidden;
 }
 
 .side-bar {

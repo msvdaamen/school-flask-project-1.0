@@ -224,6 +224,8 @@ function resetMovieModal() {
     modalCoverPreview.src = ``;
     modalDateInput.value = '';
     movieModelRolesContainer.innerHTML = "";
+    modelDirectorFirstNameInput.value = "";
+    modelDirectorLastNameInput.value = "";
 }
 
 /**
