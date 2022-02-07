@@ -30,6 +30,7 @@ modalEl.addEventListener('hidden.bs.modal', () => {
     resetMovieModal();
 })
 const createMovieButton = document.getElementById('create-movie-button');
+const addMovieRoleButton = document.getElementById('add-movie-role-button');
 const movieForm = document.getElementById('movie-form');
 
 const modalCoverInput = document.getElementById('movie-modal-cover-upload');
@@ -47,6 +48,10 @@ const movieModelRolesContainer = document.getElementById('movie-model-roles-cont
 
 createMovieButton.addEventListener('click', () => {
     movieModal.toggle();
+});
+
+addMovieRoleButton.addEventListener('click', () => {
+    addMovieRole()
 });
 
 modalCoverPreview.addEventListener('click', () => {
@@ -97,6 +102,50 @@ function isCardClick(path) {
     return null;
 }
 
+
+
+function addMovieRole(movie) {
+	const wrapper = document.createElement('div');
+
+	const firstNameWrapper = document.createElement('div');
+	const lastNameWrapper = document.createElement('div');
+	const roleWrapper = document.createElement('div');
+    const actionWrapper = document.createElement('div');
+
+	const firstName = document.createElement('input');
+	const lastName = document.createElement('input');
+	const role = document.createElement('input');
+    const saveButton = document.createElement('button');
+    const deleteButton = document.createElement('button');
+
+	wrapper.className = "row movie-roles";
+
+	firstNameWrapper.className = "col";
+	lastNameWrapper.className = "col";
+	roleWrapper.className = "col";
+    actionWrapper.className = "col btn-group";
+
+	firstName.className = "form-control";
+	lastName.className = "form-control";
+	role.className = "form-control";
+    saveButton.className = "btn-sm btn btn-primary";
+    deleteButton.className = "btn-sm btn btn-danger";
+
+	firstName.placeholder = "Voornaam"
+	lastName.placeholder = "Achternaam"
+	role.placeholder = "Personage"
+    saveButton.innerHTML = "<i class=\"fa fa-save\"></i>"
+    deleteButton.innerHTML = "<i class=\"fa fa-trash\"></i>"
+
+	firstNameWrapper.append(firstName);
+	lastNameWrapper.append(lastName);
+	roleWrapper.append(role);
+    actionWrapper.append(saveButton, deleteButton);
+
+	wrapper.append(firstNameWrapper, lastNameWrapper, roleWrapper, actionWrapper);
+	movieModelRolesContainer.appendChild(wrapper);
+}
+
 /**
  *
  * @param movie {object}
@@ -110,38 +159,6 @@ function setModalInfo(movie) {
     modalDateInput.value = formatDate(movie.date);
     modelDirectorFirstNameInput.value = movie.director.first_name;
     modelDirectorLastNameInput.value = movie.director.last_name;
-    for (let i = 0; i < 10; i++) {
-        const wrapper = document.createElement('div');
-
-        const firstNameWrapper = document.createElement('div');
-        const lastNameWrapper = document.createElement('div');
-        const roleWrapper = document.createElement('div');
-
-        const firstName = document.createElement('input');
-        const lastName = document.createElement('input');
-        const role = document.createElement('input');
-
-        wrapper.className = "row movie-roles";
-
-        firstNameWrapper.className = "col";
-        lastNameWrapper.className = "col";
-        roleWrapper.className = "col";
-
-        firstName.className = "form-control";
-        lastName.className = "form-control";
-        role.className = "form-control";
-
-        firstName.placeholder = "Voornaam"
-        lastName.placeholder = "Achternaam"
-        role.placeholder = "Personage"
-
-        firstNameWrapper.append(firstName);
-        lastNameWrapper.append(lastName);
-        roleWrapper.append(role);
-
-        wrapper.append(firstNameWrapper, lastNameWrapper, roleWrapper);
-        movieModelRolesContainer.appendChild(wrapper);
-    }
 }
 
 function resetMovieModal() {

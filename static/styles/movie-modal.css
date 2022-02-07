@@ -90,6 +90,11 @@
     position: absolute;
 }
 
+.align-start {
+	align-self: flex-start;
+	padding-top: 12px;
+}
+
 .title-text {
     align-items: center;
     display: flex;
@@ -102,4 +107,13 @@
 
 .movie-roles {
     padding: 10px 0;
+}
+
+.role-button {
+    padding-left: 56px;
+}
+
+
+.movie-create .roles-container {
+    display: none;
 }
