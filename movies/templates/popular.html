@@ -1,11 +1,14 @@
 {% extends 'base.html' %}
 {% set active_page = "popular" %}
 
+
+
 {% block head %}
 <link rel="stylesheet" href="{{ url_for('static', filename='styles/movies.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='styles/movie-modal.css') }}">
 {% endblock %}
 {% block content %}
+<title>{% block title %}Trending Movies {% endblock %}- Movie Rater</title>
 
 <div class="movies-container" id="movies-container">
 
