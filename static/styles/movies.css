@@ -31,7 +31,7 @@
 	height: 400px;
 }
 .create-button {
-    position: absolute;
+    position: fixed;
     bottom: 30px;
     right: 30px;
 }
