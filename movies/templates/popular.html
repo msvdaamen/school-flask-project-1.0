@@ -23,9 +23,11 @@
 	</div>
 	{% endfor %}
 </div>
+{% if current_user.is_authenticated %}
 <div class="create-button">
 	<button class="btn btn-primary" id="create-movie-button"><i class="fas fa-plus"></i></button>
 </div>
+{% endif %}
 {% endblock %}
 
 {% block body %}
@@ -88,7 +90,9 @@
 								</div>
 							</div>
 							<div class="role-button roles-container">
+								{% if current_user.is_authenticated %}
 								<button class="btn-sm btn btn-primary" type="button" id="add-movie-role-button"><i class="fa fa-plus"></i> Voeg een rol toe</button>
+								{% endif %}
 							</div>
 
 
@@ -121,7 +125,9 @@
 					<br>
 					<br>
 					<br>
+					{% if current_user.is_authenticated %}
 					<button class="btn btn-primary" id="movie-modal-submit-button" type="submit">Opslaan</button>
+					{% endif %}
 				</div>
 			</div>
 			</form>
@@ -129,5 +135,8 @@
 	</div>
 </div>
 
+<script>
+	var isAUth = "{{current_user.is_authenticated}}" === 'True';
+</script>
 <script src="{{url_for('static', filename='js/movies.js')}}" defer></script>
 {% endblock %}

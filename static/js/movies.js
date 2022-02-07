@@ -21,7 +21,9 @@ movieCards.addEventListener('click', async (event) => {
 
 modalEl.addEventListener('show.bs.modal', () => {
     movieModalType = modalEl.dataset.type;
-    checkCanSaveMovie();
+    if (isAUth) {
+        checkCanSaveMovie();
+    }
 })
 modalEl.addEventListener('hidden.bs.modal', () => {
     modalEl.dataset.type = 'create';
@@ -56,13 +58,14 @@ movieModelRolesContainer.addEventListener('click', el => {
     }
 })
 
-createMovieButton.addEventListener('click', () => {
-    movieModal.toggle();
-});
-
-addMovieRoleButton.addEventListener('click', () => {
-    addMovieRole()
-});
+if (isAUth) {
+    createMovieButton.addEventListener('click', () => {
+        movieModal.toggle();
+    });
+    addMovieRoleButton.addEventListener('click', () => {
+        addMovieRole()
+    });
+}
 
 modalCoverPreview.addEventListener('click', () => {
     modalCoverInput.click();
@@ -169,9 +172,15 @@ function addMovieRole(roleObj) {
         firstName.value = roleObj.first_name;
         lastName.value = roleObj.last_name;
         role.value = roleObj.role;
-        actionWrapper.append(deleteButton);
         wrapper.id = 'role-' + roleObj.id;
         deleteButton.dataset.id = roleObj.id;
+        if (!isAUth) {
+            firstName.disabled = true;
+            lastName.disabled = true;
+            role.disabled = true;
+        } else {
+            actionWrapper.append(deleteButton);
+        }
     } else {
         firstName.id = 'add-role-firstname';
         lastName.id = 'add-role-lastname';
@@ -268,3 +277,13 @@ async function removeRol(id) {
     }).then(r => r.json());
     document.getElementById('role-' + id).remove();
 }
+ if (!isAUth) {
+     const inputs = document.querySelectorAll('input');
+     const textareas = document.querySelectorAll('textarea');
+     for (const input of inputs) {
+         input.disabled = true;
+     }
+     for (const textarea of textareas) {
+         textarea.disabled = true;
+     }
+ }
